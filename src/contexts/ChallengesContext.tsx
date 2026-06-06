@@ -1,78 +1,109 @@
-import { createContext, useState, ReactNode } from 'react'
-import challenges from '../../challenges.json'
+import { createContext, useState, useEffect, ReactNode } from 'react';
+import challenges from '../../challenges.json';
+import { GAME_KEY } from './UserContext';
 
 type Challenge = {
   type: 'body' | 'eye';
   description: string;
   amount: number;
+};
+
+function getLevelStartXp(level: number) {
+  return 16 * (level - 1) * (level + 2);
 }
 
 type ChallengesContextData = {
   level: number;
   currentXp: number;
   completedChallenges: number;
+  lastXpGain: number;
   activeChallenge: Challenge;
+  levelStartXp: number;
   xpToNextLevel: number;
   levelup: () => void;
   startNewChallenge: () => void;
   resetChallenge: () => void;
   completeChallenge: () => void;
-}
+};
 
 type ChallengesProviderProps = {
   children: ReactNode;
+};
+
+function getStoredState() {
+  try {
+    const stored = localStorage.getItem(GAME_KEY);
+    if (stored) return JSON.parse(stored);
+  } catch {}
+  return { level: 1, currentXp: 0, completedChallenges: 0 };
 }
 
-export const ChallengesContext = createContext( {} as ChallengesContextData )
+export const ChallengesContext = createContext({} as ChallengesContextData);
 
-export function ChallengesProvider( props: ChallengesProviderProps ) {
-  const [ level, setLevel ] = useState( 1 )
-  const [ currentXp, setCurrentXp ] = useState( 0 )
-  const [ completedChallenges, setCompletedChallenges ] = useState( 0 )
-  const [ activeChallenge, setActiveChallenge ] = useState( null )
-  
-  const xpToNextLevel = Math.pow( ( level + 1 ) * 4, 2 )
+export function ChallengesProvider(props: ChallengesProviderProps) {
+  const initial = getStoredState();
+
+  const [level, setLevel] = useState(initial.level);
+  const [currentXp, setCurrentXp] = useState(initial.currentXp);
+  const [completedChallenges, setCompletedChallenges] = useState(
+    initial.completedChallenges,
+  );
+  const [activeChallenge, setActiveChallenge] = useState(null);
+  const [lastXpGain, setLastXpGain] = useState(0);
+
+  const xpToNextLevel = 64 + (level - 1) * 32;
+  const levelStartXp = getLevelStartXp(level);
+
+  useEffect(() => {
+    localStorage.setItem(
+      GAME_KEY,
+      JSON.stringify({ level, currentXp, completedChallenges }),
+    );
+  }, [level, currentXp, completedChallenges]);
 
   function levelup() {
-    setLevel( level + 1 )
+    setLevel(level + 1);
   }
 
   function startNewChallenge() {
-    const randIndex = Math.floor( Math.random() * challenges.length )
-    const newChallenge = challenges[ randIndex ]
+    const randIndex = Math.floor(Math.random() * challenges.length);
+    const newChallenge = challenges[randIndex];
 
-    setActiveChallenge( newChallenge )
+    setActiveChallenge(newChallenge);
   }
 
   function resetChallenge() {
-    setActiveChallenge( null )
+    setActiveChallenge(null);
   }
 
   function completeChallenge() {
-    if( !activeChallenge ) {
-      return
+    if (!activeChallenge) {
+      return;
     }
 
-    const { amount } = activeChallenge
-    let finalXp = currentXp + amount
+    const { amount } = activeChallenge;
+    setLastXpGain(amount);
+    let finalXp = currentXp + amount;
 
-    if( finalXp >= xpToNextLevel ) {
-      levelup()
-      finalXp -= xpToNextLevel
+    if (finalXp >= xpToNextLevel) {
+      levelup();
+      finalXp -= xpToNextLevel;
     }
 
-    setCurrentXp( finalXp )
-    setActiveChallenge( null )
-    setCompletedChallenges( completedChallenges + 1 )
+    setCurrentXp(finalXp);
+    setActiveChallenge(null);
+    setCompletedChallenges(completedChallenges + 1);
   }
 
-  return(
+  return (
     <ChallengesContext.Provider
       value={{
         level,
         currentXp,
         completedChallenges,
+        lastXpGain,
         activeChallenge,
+        levelStartXp,
         xpToNextLevel,
         levelup,
         startNewChallenge,
@@ -80,7 +111,7 @@ export function ChallengesProvider( props: ChallengesProviderProps ) {
         completeChallenge,
       }}
     >
-      { props.children }
-    </ChallengesContext.Provider>  
-  )
+      {props.children}
+    </ChallengesContext.Provider>
+  );
 }

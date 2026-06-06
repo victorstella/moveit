@@ -26,4 +26,6 @@ span.currentExperience {
   position: absolute;
   top: 12px;
   transform: translate( -50% );
+  color: var(--text-green);
+  font-weight: 800;
 }
