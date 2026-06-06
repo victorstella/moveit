@@ -1,4 +1,4 @@
-# Move.it
+# [Move.it](https://moveit-pomodoro.vercel.app/)
 
 A gamified wellness app that nudges you to take short physical breaks during long focus sessions like work or studying.
 
