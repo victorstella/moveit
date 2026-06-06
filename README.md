@@ -1,4 +1,4 @@
-# Get.up
+# Move.it
 
 A gamified wellness app that nudges you to take short physical breaks during long focus sessions like work or studying.
 
