@@ -10,6 +10,12 @@
   font-weight: 500;
 }
 
+@media (max-width: 768px) {
+  .completedChallengesContainer {
+    margin: 1.5rem 0;
+  }
+}
+
 .completedChallengesContainer span:first-child {
   font-size: 1.25rem;
 }
