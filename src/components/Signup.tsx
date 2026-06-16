@@ -3,6 +3,7 @@ import { createAvatar } from '@dicebear/core';
 import { toonHead } from '@dicebear/collection';
 import { useUser } from '../contexts/UserContext';
 import styles from '../styles/components/Signup.module.css';
+import { GithubLink } from './GitHub';
 
 export default function Signup() {
   const { saveUser } = useUser();
@@ -96,6 +97,7 @@ export default function Signup() {
           Let's go
         </button>
       </div>
+      <GithubLink />
     </div>
   );
 }

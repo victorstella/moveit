@@ -3,7 +3,7 @@
   max-width: 992px;
   margin: 0 auto;
   padding: 2.5rem 2rem;
-
+  justify-content: space-between;
   display: flex;
   flex-direction: column;
 }
@@ -13,6 +13,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 6.25rem;
   align-content: center;
+  margin-bottom: 6rem;
 }
 
 @media (max-width: 768px) {
