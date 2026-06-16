@@ -1,0 +1,30 @@
+# Move.it
+
+> A gamified wellness app that nudges you to take short physical breaks during long focus sessions like work or studying.
+
+## What it does
+
+Move.it combines Pomodoro timers with physical micro-challenges. Every 25 minutes, a random body or eye exercise appears. Complete it to earn XP and level up. Skip it and lose the round. Progress persists in localStorage — no account or backend needed.
+
+## Key features
+
+- 25-minute Pomodoro countdown timer
+- Random physical challenges (stretches, neck rolls, eye exercises)
+- XP and leveling system
+- Avatar generated from your name via DiceBear, or upload your own photo
+- All state saved to localStorage (no login required)
+
+## Stack
+
+- Next.js (React framework)
+- DiceBear (avatar generation)
+- localStorage (client-side persistence)
+- Hosted on Vercel
+
+## URL
+
+https://moveit-pomodoro.vercel.app/
+
+## Source
+
+https://github.com/victorstella/getup

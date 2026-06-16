@@ -1,0 +1,21 @@
+{
+  "name": "Move.it",
+  "short_name": "Move.it",
+  "description": "Gamified Pomodoro timer with physical challenges. Work focused, stay healthy.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#5965e0",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["health", "productivity", "lifestyle"],
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

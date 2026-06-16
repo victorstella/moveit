@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from '@vercel/analytics/react';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { UserProvider, useUser } from '../contexts/UserContext';
 import Signup from '../components/Signup';
