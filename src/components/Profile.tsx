@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { ChallengesContext } from '../contexts/ChallengesContext';
 import { useUser } from '../contexts/UserContext';
+import { ThemeToggle } from './ThemeToggle';
 import styles from '../styles/components/Profile.module.css';
 
 export function Profile() {
@@ -36,6 +37,7 @@ export function Profile() {
           Sign out
         </button>
       </div>
+      <ThemeToggle className={styles.themeToggle} />
     </div>
   );
 }

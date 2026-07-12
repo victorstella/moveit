@@ -41,6 +41,10 @@
   border: 2px solid var(--blue);
 }
 
+.themeToggle {
+  margin-left: auto;
+}
+
 .profileContainer div {
   margin-left: 1.5rem;
 }

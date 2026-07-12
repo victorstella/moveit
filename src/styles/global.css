@@ -7,6 +7,7 @@
 :root {
   --white: #fff;
   --background: #f2f3f5;
+  --surface: #fff;
   --gray-line: #dcdde0;
   --text: #666666;
   --text-highlight: #b3b9ff;
@@ -17,6 +18,29 @@
   --blue: #5965e0;
   --blue-dark: #4953b8;
   --blue-twitter: #2aa9e0;
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --background: #12141c;
+  --surface: #1b1e29;
+  --gray-line: #2d3140;
+  --text: #a4a9ba;
+  --text-highlight: #7c86e0;
+  --title: #eef0f7;
+  --red: #ff5c7a;
+  --green: #4cd62b;
+  --text-green: #4ade80;
+  --blue: #6c78ee;
+  --blue-dark: #5965e0;
+  --blue-twitter: #4fc0f0;
+
+  color-scheme: dark;
+}
+
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 @media( max-width: 1080px ) {

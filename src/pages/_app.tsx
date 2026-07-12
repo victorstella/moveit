@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { UserProvider, useUser } from '../contexts/UserContext';
+import { ThemeProvider } from '../contexts/ThemeContext';
 import Signup from '../components/Signup';
 import '../styles/global.css';
 
@@ -26,10 +27,12 @@ function AppContent({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <UserProvider>
-      <AppContent Component={Component} pageProps={pageProps} />
-      <Analytics />
-    </UserProvider>
+    <ThemeProvider>
+      <UserProvider>
+        <AppContent Component={Component} pageProps={pageProps} />
+        <Analytics />
+      </UserProvider>
+    </ThemeProvider>
   );
 }
 

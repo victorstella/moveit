@@ -4,6 +4,7 @@ import { toonHead } from '@dicebear/collection';
 import { useUser } from '../contexts/UserContext';
 import styles from '../styles/components/Signup.module.css';
 import { GithubLink } from './GitHub';
+import ThemeToggle from './ThemeToggle';
 
 export default function Signup() {
   const { saveUser } = useUser();
@@ -84,6 +85,7 @@ export default function Signup() {
               onChange={handleFileUpload}
               className={styles.fileInput}
             />
+            <ThemeToggle className={styles.themeToggle} />
           </div>
         </div>
 
