@@ -8,8 +8,10 @@ export default function Countdown() {
     seconds,
     isActive,
     hasFinished,
+    alertActive,
     countdownStart,
-    resetCountdown
+    resetCountdown,
+    stopAlert
   } = useContext( CountdownContext )
 
   const [ minuteLeft, minuteRight ] = String( minutes ).padStart( 2, '0' ).split( '' )
@@ -17,6 +19,16 @@ export default function Countdown() {
 
   return(
     <div>
+      { alertActive && (
+        <button
+          type="button"
+          className={ styles.stopAlertButton }
+          onClick={ stopAlert }
+        >
+          Stop alert
+        </button>
+      ) }
+
       <div className={ styles.countdownContainer } >
         <div>
           <span>{ minuteLeft }</span>
